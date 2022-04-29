@@ -34,8 +34,6 @@ $Mailboxes = Get-EXOMailbox -Resultsize Unlimited -Properties ExternalDirectoryO
 foreach ($Mailbox in $Mailboxes) {
     $i++
     Write-Progress -Activity "Gettting Mailbox permissions [$i/$($Mailboxes.Count)]" -Status "Currently Processing: Mailbox $($Mailbox.DisplayName)" -PercentComplete ($i/$Mailboxes.Count*100) -Id 0
-    
-    $ADUser = Get-AzureADUser -ObjectId $Mailbox.UserPrincipalName
 
     $Permissions = Get-MailboxPermission -Identity $Mailbox.ExternalDirectoryObjectId | Where-Object {$_.AccessRights -like "*FullAccess" -and $_.User -ne "NT AUTHORITY\SYSTEM" -and $_.User -ne "NT AUTHORITY\SELF" -and $_.IsInherited -eq $false -and $_.User -notlike "S-1-*"}
     foreach ($Permission in $Permissions) {
