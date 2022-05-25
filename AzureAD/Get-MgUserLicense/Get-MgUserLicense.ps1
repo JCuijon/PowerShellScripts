@@ -31,9 +31,9 @@ $FilePath = "https://download.microsoft.com/download/e/3/e/e3e9faf2-f28b-490a-9a
 $ProdcutPlans = @()
 $ProdcutPlans = Invoke-WebRequest $FilePath | ConvertFrom-Csv -Delimiter ',' | Select-Object 'Product_Display_Name','String_Id','GUID' | Sort-Object 'String_Id' | Get-Unique -AsString
 
-#Connect MgGraph
+#Connect to MgGraph
 Connect-MgGraph
-#Connect-MgGraph -Scopes "User.ReadWrite.All","Group.ReadWrite.All","Directory.Read.All"
+#Connect-MgGraph -Scopes "User.Read.All","Group.Read.All","Devices.Read.All"
 
 $i = 0
 $j = 0
