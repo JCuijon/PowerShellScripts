@@ -32,8 +32,8 @@ $ProdcutPlans = @()
 $ProdcutPlans = Invoke-WebRequest $FilePath | ConvertFrom-Csv -Delimiter ',' | Select-Object 'Product_Display_Name','String_Id','GUID' | Sort-Object 'String_Id' | Get-Unique -AsString
 
 #Connect to MgGraph
-Connect-MgGraph
-#Connect-MgGraph -Scopes "User.Read.All","Group.Read.All","Devices.Read.All"
+#Connect-MgGraph
+Connect-MgGraph -Scopes "User.Read.All","Group.Read.All","Devices.Read.All"
 
 $i = 0
 $j = 0
